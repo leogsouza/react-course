@@ -10,17 +10,7 @@ class App extends Component {
       { name: "Guel", age: 18 }
     ],
     showPersons: false
-  };
-
-  switchNameHandler = newName => {
-    this.setState({
-      persons: [
-        { name: newName, age: 36 },
-        { name: "Fabiana", age: 37 },
-        { name: "Miguel", age: 7 }
-      ]
-    });
-  };
+  };  
 
   nameChangedHandler = event => {
     this.setState({
@@ -31,6 +21,12 @@ class App extends Component {
       ]
     });
   };
+
+  deletePersonHandler = (personIndex) => {
+    const persons = this.state.persons;
+    persons.splice(personIndex, 1);
+    this.setState({persons: persons});
+  }
 
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
@@ -47,6 +43,22 @@ class App extends Component {
       padding: "8px",
       cursor: "pointer"
     };
+
+    let persons = null;
+
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+          {this.state.persons.map((person, index) => {
+            return <Person
+              click={() => this.deletePersonHandler(index)}
+              name={person.name}
+              age={person.age} />
+          })}
+        </div>
+      )
+    }
+
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
@@ -54,25 +66,7 @@ class App extends Component {
         <button style={style} onClick={this.togglePersonsHandler}>
           Toggle Persons
         </button>
-        { this.state.showPersons === true ?
-        <div>
-          <Person
-            name={this.state.persons[0].name}
-            age={this.state.persons[0].age}
-          />
-          <Person
-            name={this.state.persons[1].name}
-            age={this.state.persons[1].age}
-            click={this.switchNameHandler.bind(this, "Léo")}
-            changed={this.nameChangedHandler}
-          >
-            My Hobbies: Cooking
-          </Person>
-          <Person
-            name={this.state.persons[2].name}
-            age={this.state.persons[2].age}
-          />
-        </div> : null}
+        {persons}
       </div>
     );
   }
