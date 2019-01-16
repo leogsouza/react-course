@@ -44,22 +44,12 @@ class App extends Component {
   };
 
   render() {
-    const style = {
-      backgroundColor: "green",
-      color: 'white',
-      font: "inherit",
-      border: "1px solid blue",
-      padding: "8px",
-      cursor: "pointer"
-    };
-
     let persons = null;
 
     if (this.state.showPersons) {
       persons = <Persons persons={this.state.persons}
             clicked={this.deletePersonHandler}
             changed={this.nameChangedHandler} />
-      style.backgroundColor = 'red';
     }
 
     
@@ -68,6 +58,7 @@ class App extends Component {
       
         <div className="App">
           <Cockpit showPersons={this.state.showPersons}
+            appTitle={this.props.title}
             persons={this.state.persons} clicked={this.togglePersonsHandler} />
           {persons}
         </div>      
