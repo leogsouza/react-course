@@ -2,10 +2,12 @@ import React from "react";
 
 import Wrapper from "../../hoc/Wrapper";
 
+import classes from './Layout.module.css';
+
 const layout = props => (
   <Wrapper>
-    <div></div>
-    <main>{props.children}</main>
+    <div>Toolbar, SideDrawer, Backdrop</div>
+    <main className={classes.Content}>{props.children}</main>
   </Wrapper>
 );
 
