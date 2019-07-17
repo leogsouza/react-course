@@ -9,7 +9,7 @@ class OrderSummary extends Component {
   }
 
   render() {
-    const ingregientSummary = Object.keys(this.props.ingredients)
+    const ingredientSummary = Object.keys(this.props.ingredients)
     .map(ingKey => {
       return (
         <li key={ingKey}>
@@ -22,7 +22,7 @@ class OrderSummary extends Component {
         <h3>Your Order</h3>
         <p>A delicious burger with the following ingredients</p>
         <ul>
-          {ingregientSummary}
+          {ingredientSummary}
         </ul>
         <p><strong>Total Price: {this.props.price.toFixed(2)}</strong></p>
         <p>Continue to Checkout!</p>
